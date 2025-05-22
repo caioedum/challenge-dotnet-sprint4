@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ML;
+using Microsoft.Extensions.Options;
+using Stripe;
 using WebApiChallenge.Context;
 using WebApiChallenge.Interfaces;
 using WebApiChallenge.Models;
@@ -30,6 +32,15 @@ builder.Services.AddPredictionEnginePool<SentimentModelInput, SentimentModelOutp
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
+});
+
+builder.Services.AddHttpClient();
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.AddSingleton<IStripeClient, StripeClient>(sp =>
+{
+    var config = sp.GetRequiredService<IOptions<StripeSettings>>().Value;
+    return new StripeClient(config.SecretKey);
 });
 
 var app = builder.Build();
