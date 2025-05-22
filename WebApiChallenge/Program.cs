@@ -24,6 +24,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WebApiDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
 
+builder.Services.AddPredictionEnginePool<SentimentModelInput, SentimentModelOutput>()
+    .FromFile(modelName: "SentimentAnalysisModel", filePath: "sentiment_model.zip", watchForChanges: true);
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
