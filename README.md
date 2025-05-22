@@ -6,6 +6,12 @@ O **WebApiChallenge** é uma API RESTful desenvolvida em .NET 8, voltada para ge
 
 ---
 
+## Integrantes do Grupo
+
+- **Caio Eduardo Nascimento Martins - RM554025**
+- **Julia Mariano Barsotti Ferreira - RM552713**
+- **Leonardo Gaspar Saheb - RM553383**
+
 ## Funcionalidades
 
 - CRUD completo para Dentistas, Usuários, Previsões e outros recursos
@@ -98,4 +104,79 @@ dotnet test
 Todos os testes podem ser executados diretamente pelo comando acima. O resultado exibirá a cobertura e os cenários validados.
 
 ---
+
+## Acesse a API no navegador ou via Postman:
+
+- **🔗 Endpoint padrão:**
+```
+https://localhost:7185
+```
+- **📜 Documentação Swagger:**
+```
+https://localhost:7185/swagger/index.html
+```
+
+## Endpoints da API
+
+🔹 Endpoints:
+
+### AtendimentosUsuarios
+
+- GET /api/AtendimentosUsuarios - Retorna todos os atendimentos
+
+- POST /api/AtendimentosUsuarios - Adiciona um novo atendimento
+  
+- GET /api/AtendimentosUsuarios/{id} - Retorna por Id
+
+- PUT /api/AtendimentosUsuarios/{id} - Atualiza um atendimento
+
+- DELETE /api/AtendimentosUsuarios/{id} - Remove um atendimento
+
+### ContatosUsuarios
+
+- GET /api/ContatosUsuarios - Retorna todos os contatos
+
+- POST /api/ContatosUsuarios - Adiciona um novo contato
+  
+- GET /api/ContatosUsuarios/{id} - Retorna por Id
+
+- PUT /api/ContatosUsuarios/{id} - Atualiza um contato
+
+- DELETE /api/ContatosUsuarios/{id} - Remove um contato
+
+### Dentistas
+
+- GET /api/Dentistas - Retorna todos os dentistas
+
+- POST /api/Dentistas - Adiciona um novo dentista
+  
+- GET /api/Dentistas/{id} - Retorna por Id
+
+- PUT /api/Dentistas/{id} - Atualiza um dentista
+
+### Previsoes
+
+- GET /api/Previsoes - Retorna todas as previsões
+
+- POST /api/Previsoes - Adiciona uma nova previsão
+  
+- GET /api/Dentistas/{id} - Retorna por Id
+
+- PUT /api/Dentistas/{id} - Atualiza uma previsão
+
+- DELETE /api/Dentistas/{id} - Remove uma nova previsão
+
+### Usuarios
+
+- GET /api/Usuarios - Retorna todos os usuários
+
+- POST /api/Usuarios - Adiciona um novo usuário
+  
+- GET /api/Usuarios/{id} - Retorna por Id
+
+- PUT /api/Usuarios/{id} - Atualiza um usuário
+
+## 📜 Licença
+
+- 📝 Este projeto é de uso acadêmico - FIAP.
 
