@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ML;
 using WebApiChallenge.Context;
 using WebApiChallenge.Interfaces;
+using WebApiChallenge.Models;
 using WebApiChallenge.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WebApiDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
 
+builder.Services.AddPredictionEnginePool<ModelInput, ModelOutput>()
+    .FromFile(modelName: "SentimentAnalysisModel", filePath: "sentiment_model.zip", watchForChanges: true);
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
@@ -41,5 +46,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+var predictionHandler = async (
+    PredictionEnginePool<ModelInput, ModelOutput> predictionEnginePool,
+    ModelInput input) =>
+    await Task.FromResult(predictionEnginePool.Predict(modelName: "SentimentAnalysisModel", input));
+
+app.MapPost("/predict", predictionHandler);
 
 app.Run();
